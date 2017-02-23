@@ -4,11 +4,18 @@ import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = KaaditionzMod.MODID, version = KaaditionzMod.VERSION)
+@Mod(modid = Constants.MODID, version = Constants.VERSION)
 public class KaaditionzMod {
-    public static final String MODID = "kaaditionz";
-    public static final String VERSION = "0.1";
+    @Mod.Instance(Constants.MODID)
+    public static KaaditionzMod instance = new KaaditionzMod();
+
+
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        Cfg.preInit(event);
+    }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
