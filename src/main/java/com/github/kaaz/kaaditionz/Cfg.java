@@ -11,20 +11,6 @@ import java.lang.reflect.Modifier;
 public class Cfg {
     private static Configuration config;
 
-    public static class General {
-        @Config.Comment({"Debug mode activated?"})
-        public static boolean debug = false;
-        @Config.Comment({"this is some multiplier"})
-        public static int some_multiplier = 3;
-    }
-
-    public static class Extra {
-        @Config.Comment({"extra variable unused, mostly for testing the cfg file"})
-        public static String some_var = "123";
-        @Config.Comment({"some arbitrary multiplier"})
-        public static double extra_multi = 0.1d;
-    }
-
     public static void preInit(FMLPreInitializationEvent event) {
         config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
@@ -38,6 +24,20 @@ public class Cfg {
             }
         }
         config.save();
+    }
+
+    public static class General {
+        @Config.Comment({"Debug mode activated?"})
+        public static boolean debug = false;
+        @Config.Comment({"this is some multiplier"})
+        public static int some_multiplier = 3;
+    }
+
+    public static class Extra {
+        @Config.Comment({"extra variable unused, mostly for testing the cfg file"})
+        public static String some_var = "123";
+        @Config.Comment({"some arbitrary multiplier"})
+        public static double extra_multi = 0.1d;
     }
 
 }

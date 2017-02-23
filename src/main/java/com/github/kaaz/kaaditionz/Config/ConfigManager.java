@@ -2,21 +2,14 @@ package com.github.kaaz.kaaditionz.Config;
 
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.LoaderException;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
-import net.minecraftforge.fml.common.discovery.asm.ModAnnotation;
-import org.apache.logging.log4j.Level;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
@@ -27,6 +20,8 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 public class ConfigManager {
+    private static final Joiner NEW_LINE = Joiner.on('\n');
+    private static final Joiner PIPE = Joiner.on('|');
     private static Map<String, Multimap<Config.Type, ASMDataTable.ASMData>> asm_data = Maps.newHashMap();
     private static Map<Class<?>, ITypeAdapter> ADAPTERS = Maps.newHashMap();
     private static Map<Class<?>, ITypeAdapter.Map> MAP_ADAPTERS = Maps.newHashMap();
@@ -70,9 +65,6 @@ public class ConfigManager {
         if (adpt instanceof ITypeAdapter.Map)
             MAP_ADAPTERS.put(cls, (ITypeAdapter.Map) adpt);
     }
-
-    private static final Joiner NEW_LINE = Joiner.on('\n');
-    private static final Joiner PIPE = Joiner.on('|');
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     public static void createConfig(String modid, String category, Configuration cfg, Class<?> ftype, Field f, Object instance) {
