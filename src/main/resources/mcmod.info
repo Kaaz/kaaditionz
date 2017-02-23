@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "kaaditionz",
+    "name": "kaaz's playground",
+    "description": "testing various random shit.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Kaaz"
+    ],
+    "credits": "my mom",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
