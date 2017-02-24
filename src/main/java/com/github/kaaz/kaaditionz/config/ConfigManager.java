@@ -1,14 +1,11 @@
-package com.github.kaaz.kaaditionz.Config;
+package com.github.kaaz.kaaditionz.config;
 
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.common.discovery.ASMDataTable;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -22,10 +19,8 @@ import java.util.regex.Pattern;
 public class ConfigManager {
     private static final Joiner NEW_LINE = Joiner.on('\n');
     private static final Joiner PIPE = Joiner.on('|');
-    private static Map<String, Multimap<Config.Type, ASMDataTable.ASMData>> asm_data = Maps.newHashMap();
     private static Map<Class<?>, ITypeAdapter> ADAPTERS = Maps.newHashMap();
     private static Map<Class<?>, ITypeAdapter.Map> MAP_ADAPTERS = Maps.newHashMap();
-    private static Map<String, Configuration> CONFIGS = Maps.newHashMap();
 
     static {
         register(boolean.class, TypeAdapters.bool);
@@ -71,14 +66,11 @@ public class ConfigManager {
         Property prop = null;
 
         String comment = null;
-        Config.Comment ca = f.getAnnotation(Config.Comment.class);
+        Comment ca = f.getAnnotation(Comment.class);
         if (ca != null)
             comment = NEW_LINE.join(ca.value());
 
         String langKey = modid + "." + category + "." + f.getName().toLowerCase(Locale.ENGLISH);
-        Config.LangKey la = f.getAnnotation(Config.LangKey.class);
-        if (la != null)
-            langKey = la.value();
 
         ITypeAdapter adapter = ADAPTERS.get(ftype);
 

@@ -1,4 +1,4 @@
-package com.github.kaaz.kaaditionz.Config;
+package com.github.kaaz.kaaditionz.config;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;

@@ -1,4 +1,4 @@
-package com.github.kaaz.kaaditionz.Config;
+package com.github.kaaz.kaaditionz.config;
 
 /*
  * Minecraft Forge
